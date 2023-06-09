@@ -1,12 +1,26 @@
-const APIKey = "480acf8157b90eef500fa76bc0ac0586";
+const APIkey = "480acf8157b90eef500fa76bc0ac0586";
+const button = document.querySelector("#searchButton")
+const searchText = document.querySelector("#searchText")
 
-$(function() {
-    searchCity();
-    //http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
+button.addEventListener("click", function(){
+    const city = searchText.value
+    searchWeather(city)
 })
 
-$(function() {
-    searchWeather();
-    //api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
-    
-})
+
+function searchWeather(city){
+    const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${APIkey}&units=imperial`;
+
+    fetch(apiUrl)
+        .then( response => response.json())
+        .then( data  => {
+            console.log(data)
+            // const lat = data.coord.lat
+            // const lon = data.coord.lon
+
+
+        })
+}
+
+
+
